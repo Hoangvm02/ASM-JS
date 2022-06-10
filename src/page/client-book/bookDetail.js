@@ -23,13 +23,13 @@ const BookDetailPage = {
                         class="lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2">
                         ${books.name}</h1>
                         <br>
-                        <h2 class="lg:text-xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2"> ${books.price} <u>$</u></h2>
+                        <h2 class="lg:text-xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2"> ${books.price} <u>đ</u></h2>
                         
                 </div>
                 <div class="py-4 border-b border-gray-200 flex items-center justify-between">
                     <p class="text-base leading-4 text-gray-800 dark:text-gray-300"><b>Sale</b></p>
                     <div class="flex items-center justify-center">
-                        <p class="text-sm leading-none text-gray-600 dark:text-gray-300">${books.priceSale}</p>
+                        <p class="text-sm leading-none text-gray-600 dark:text-gray-300">${books.priceSale} đ</p>
                         <div class="w-6 h-6 ml-3 mr-4 cursor-pointer">
                         </div>
                     </div>
@@ -38,13 +38,13 @@ const BookDetailPage = {
                     
                 </div>
                 <div>
-                <p class="text-base leading-4 mt-7 text-gray-600 dark:text-gray-300"><b>Số lượng:</b>
+                <p  class="text-base leading-4 mt-7 text-gray-600 dark:text-gray-300"><b>Số lượng:</b>
                 </p>
-                <input type="number" id="inputValue" placeholder="1" class="form-input mt-1 block w-2/6 pl-2 outline-none py-1 rounded-sm"/>
+                <input type="number" id='cartValue' value='1'  class="form-input mt-1 block w-2/6 pl-2 outline-none py-1 rounded-sm"/>
             </div>
                 
                 <br>
-                <button  id="btnAddToCart" class="dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700 focus:outline-none">
+                <button  id="btn-add-cart" data-id="${books.id}" data-name="${books.name}" class="dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700 focus:outline-none">
                     Thêm vào giỏ hàng
                 </button>
             </div>
@@ -52,6 +52,35 @@ const BookDetailPage = {
     </section>
         ${Footer.render()}
         `;
+    },
+        afterRender: () => {
+        const btnAddCart = document.querySelector('#btn-add-cart');
+        btnAddCart.addEventListener('click', () => {
+            const item = {
+                id: btnAddCart.dataset.id,
+                name: btnAddCart.dataset.name,
+                value: +document.querySelector('#cartValue').value || 1
+            };
+            // console.log(item);
+            // check giỏ hàng xem đã có gì chưa
+            const cartItemsString = localStorage.getItem('cart'); //lất gúa trị từ key cart
+            // nếu chưa có thì là giá trị là null -> []
+            const cartItems = JSON.parse(cartItemsString || '[]');
+            // console.log(cartItemsString, cartItems);
+            if(!cartItems.length){
+                cartItems.push(item)
+            }else{
+                const exisItem = cartItems.find((cartItem) => cartItem.id === item.id);
+                if(exisItem){
+                    exisItem.value += item.value;
+                }else{
+                    cartItems.push(item)
+                }
+            }
+            
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+
+        });
     }
 };
 export default BookDetailPage;

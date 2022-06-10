@@ -57,7 +57,7 @@ const ListBooks = {
                             ${books.name}
                         </a>
                     </h3>
-                    <p class="mt-1 text-sm text-gray-500">${books.priceSale}</p>
+                    <p class="mt-1 text-sm text-gray-500">${books.priceSale} <span>%</span></p>
                 </div>
                 <p class="text-sm font-medium text-gray-900">${books.price}<u>đ</u></p>
             </div>

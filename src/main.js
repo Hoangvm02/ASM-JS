@@ -5,6 +5,8 @@ import Home from "./page/Home";
 // import router
 import router from './helpers/router'
 import BookCate from "./conponents/bookCate";
+import AdminPage from "./page/admin/dashboard";
+import CartPage from "./page/Cart";
 
 
 
@@ -20,8 +22,10 @@ const render = async (content, id) => {
 router.on({
     "/": () => render(Home),
     "books": () => render(BookPage),
+    "/admin": () => render(AdminPage),
     "/books/:id": (data) => render(BookDetailPage, (data.data.id)),
     "/category/:id": (data) => render(BookCate, (data.data.id)),
+    "/cart": () => render(CartPage)
 
 
 })
