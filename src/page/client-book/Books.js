@@ -11,9 +11,6 @@ const BookPage = {
         ${await ListBooks.render()}
         ${Footer.render()}
         `;
-    },
-    afterRender(){
-        Header.afterRender()
     }
 };
 export default BookPage;

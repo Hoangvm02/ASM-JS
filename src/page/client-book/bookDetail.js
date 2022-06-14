@@ -19,12 +19,10 @@ const BookDetailPage = {
             </div>
             <div class="xl:w-2/5 md:w-1/2 lg:ml-8 md:ml-6 md:mt-0 mt-6">
                 <div class="border-b border-gray-200 pb-6">
-                    <h1
-                        class="lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2">
+                    <h1 class="lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2">
                         ${books.name}</h1>
                         <br>
                         <h2 class="lg:text-xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800 dark:text-white mt-2"> ${books.price} <u>đ</u></h2>
-                        
                 </div>
                 <div class="py-4 border-b border-gray-200 flex items-center justify-between">
                     <p class="text-base leading-4 text-gray-800 dark:text-gray-300"><b>Sale</b></p>
@@ -44,7 +42,7 @@ const BookDetailPage = {
             </div>
                 
                 <br>
-                <button  id="btn-add-cart" data-id="${books.id}" data-name="${books.name}" class="dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700 focus:outline-none">
+                <button data-name="${books.name}" data-id="${books.id}" data-img="${books.img}" data-price="${books.price}" id="btn-add-cart"  class="dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700 focus:outline-none">
                     Thêm vào giỏ hàng
                 </button>
             </div>
@@ -53,33 +51,37 @@ const BookDetailPage = {
         ${Footer.render()}
         `;
     },
-        afterRender: () => {
+    afterRender: () => {
         const btnAddCart = document.querySelector('#btn-add-cart');
         btnAddCart.addEventListener('click', () => {
             const item = {
                 id: btnAddCart.dataset.id,
                 name: btnAddCart.dataset.name,
+                price: btnAddCart.dataset.price,
+                img: btnAddCart.dataset.img,
                 value: +document.querySelector('#cartValue').value || 1
             };
-            // console.log(item);
-            // check giỏ hàng xem đã có gì chưa
-            const cartItemsString = localStorage.getItem('cart'); //lất gúa trị từ key cart
-            // nếu chưa có thì là giá trị là null -> []
+
+            // Lưu trữ vào localStorage: setItem(key, giá trị bắt buộc là 1 chuỗi)
+            // 1. Xem giỏ hàng có gì chưa
+            const cartItemsString = localStorage.getItem('cart'); // lấy ra giá trị từ key cart
+            // Nếu chưa có thì giá trị là null -> []
             const cartItems = JSON.parse(cartItemsString || '[]');
-            // console.log(cartItemsString, cartItems);
-            if(!cartItems.length){
-                cartItems.push(item)
-            }else{
-                const exisItem = cartItems.find((cartItem) => cartItem.id === item.id);
-                if(exisItem){
-                    exisItem.value += item.value;
-                }else{
-                    cartItems.push(item)
+            // 2. Nếu chưa có gì thì push luôn sv vào
+            if (!cartItems.length) {
+                cartItems.push(item);
+            } else {
+                // 2.1 Tìm xem có phần tử nào giống cái đang muốn push vào không
+                const existItem = cartItems.find((cartItem) => cartItem.id === item.id);
+                if (existItem) {
+                    existItem.value += item.value;
+                } else {
+                    cartItems.push(item);
                 }
             }
-            
+            // 3. Set giá trị mới cho giỏ hàng
             localStorage.setItem('cart', JSON.stringify(cartItems));
-
+            // reRender('#cart', Cart);
         });
     }
 };

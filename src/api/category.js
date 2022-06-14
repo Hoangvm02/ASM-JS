@@ -10,13 +10,13 @@ export const get = (id) => {
 }
 export const remove = (id) => {
     const url = `/categories/${id}`;
-    return instance.detele(url);
+    return instance.delete(url);
 }
 export const add = (category) => {
     const url = `/categories`;
     return instance.post(url, category);
 }
-export const edit = (category) => {
-    const url = `/categories/${category.id}`;
-    return instance.put(url, category);
+export const edit = (post) => {
+    const url = `/categories/${post.id}`;
+    return instance.put(url, post);
 }

@@ -1,7 +1,8 @@
+
 const Cart = {
     render:() =>{
       const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
-
+      // console.log(cartItems);
         return `
         <body class="bg-gray-100">
        
@@ -23,24 +24,24 @@ const Cart = {
               <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
                 <div class="flex w-2/5"> 
                   <div class="w-20">
-                    <img class="h-24" src="${item.img}" alt="">
+                    <img src="${item.img}" class="h-24"  alt=""/>
                   </div>
                   <div class="flex flex-col justify-between ml-4 flex-grow">
                     <span class="font-bold text-sm">${item.name}</span>
                     <span class="text-red-500 text-xs">Apple</span>
-                    <button data-id="${item.id}" id="remove-cart" class="font-semibold hover:text-red-500 text-left text-gray-500 text-xs">Remove</button>
+                    <button  id="delete-cart-btn" data-id="${item.id}" class=" btn btn-danger font-semibold hover:text-red-500 text-left text-gray-500 text-xs">Remove</button>
                   </div>
                 </div>
                 <div class="flex justify-center w-1/5">
                   <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
                   </svg>
-                  <input value="${item.value}" class="mx-2 border text-center w-8" type="text" value="1">
+                  <input value="${item.value}" class="mx-2 border text-center w-8" type="text"/>
                   <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
                     <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
                   </svg>
                 </div>
-                <span class="text-center w-1/5 font-semibold text-sm"></span>
-                <span class="text-center w-1/5 font-semibold text-sm">$400.00</span>
+                <span class="text-center w-1/5 font-semibold text-sm">${item.price}</span>
+                <span class="text-center w-1/5 font-semibold text-sm">${Number(item.price) * Number(item.value)}</span>
                 
               </div>
             `).join('')}
@@ -60,7 +61,7 @@ const Cart = {
               </div>
               <div class="py-10">
                 <label for="promo" class="font-semibold inline-block mb-3 text-sm uppercase">Promo Code</label>
-                <input type="text" id="promo" placeholder="Enter your code" class="p-2 text-sm w-full">
+                <input type="text" id="promo" placeholder="Enter your code" class="p-2 text-sm w-full" />
               </div>
               <button class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">Apply</button>
               <div class="border-t mt-8">
@@ -78,15 +79,21 @@ const Cart = {
       </body>
         `
     },
-    afterRender: () =>{
-      const removeCart = document.querySelector('#remove-cart');
-      removeCart.addEventListener('click', () => {
-       const itemId = removeCart.dataset.id;
-       const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
-       const newCartItems = cartItems.filter((item) => item.id !== itemId);
-
-       localStorage.setItem('cart', JSON.stringify(newCartItems))
-      })
-    }
+    afterRender: () => {
+      // 1. Tìm nút để tạo sự kiện xoá
+      const deleteCartBtn = document.querySelector('#delete-cart-btn');
+      deleteCartBtn.addEventListener('click', () => {
+          // Tìm id cần được xoá qua thuộc tính data-id
+          const itemId = deleteCartBtn.dataset.id;
+          // Lấy ds sp trong giỏ
+          const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+          // Tạo 1 mảng mới từ mảng cũ nhưng đã loại bỏ sp có id là itemId
+          const newCartItems = cartItems.filter((item) => item.id !== itemId);
+          // Lưu lại giỏ hàng và render lại view chi tiết và view GH
+          localStorage.setItem('cart', JSON.stringify(newCartItems));
+          reRender('#content', Cart);
+          reRender('#cart', Cart);
+      });
+  }
 }
 export default Cart

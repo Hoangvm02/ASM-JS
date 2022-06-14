@@ -1,6 +1,6 @@
 const BookCate = {
     async render() {
-        const response = await axios.get('http://localhost:3000/books?categoryId='+id)
+        // const response = await axios.get('http://localhost:3000/books?categoryId='+id)
         console.log(response);
         const cate = await axios.get('http://localhost:3000/categories')
         return `
