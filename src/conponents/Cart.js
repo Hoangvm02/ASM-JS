@@ -29,7 +29,7 @@ const Cart = {
                   <div class="flex flex-col justify-between ml-4 flex-grow">
                     <span class="font-bold text-sm">${item.name}</span>
                     <span class="text-red-500 text-xs">Apple</span>
-                    <button  id="delete-cart-btn" data-id="${item.id}" class=" btn btn-danger font-semibold hover:text-red-500 text-left text-gray-500 text-xs">Remove</button>
+                    <button id="delete-cart-btn" data-id="${item.id}" class=" btn btn-danger font-semibold hover:text-red-500 text-left text-gray-500 text-xs">Remove</button>
                   </div>
                 </div>
                 <div class="flex justify-center w-1/5">

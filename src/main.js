@@ -13,6 +13,7 @@ import CategoryPage from "./page/admin/category";
 import BooksEdit from "./page/admin/book/edit";
 import CategoryAdd from "./page/admin/category/add";
 import CategoryEdit from "./page/admin/category/edit";
+import Signin from "./page/signin";
 // import Cart from "./conponents/Cart";
 
 
@@ -28,6 +29,7 @@ const render = async (content, id) => {
 router.on({
     "/": () => render(Home),
     "books": () => render(BookPage),
+    "signin": () => render(Signin),
     "/admin": () => render(AdminPage),
     "/admin/books": () => render(Books),
     "/admin/books/add": () => render(BookAdd),

@@ -1,22 +1,6 @@
 {
   "books": [
     {
-      "name": "Neal Miller",
-      "img": "https://toplist.vn/images/800px/tony-buoi-sang-tren-duong-bang-173068.jpg",
-      "price": 35,
-      "priceSale": 71,
-      "categoryId": 3,
-      "id": 2
-    },
-    {
-      "name": "Bessie Stiedemann",
-      "img": "https://media.ohay.tv/v1/upload/content/2016-06/11/13927-c572fd20187cc684d438fd7620862d2c.jpg",
-      "price": 37,
-      "priceSale": 73,
-      "categoryId": 2,
-      "id": 3
-    },
-    {
       "name": "Bernard Mraz V",
       "img": "https://toplist.vn/images/800px/tony-buoi-sang-tren-duong-bang-173068.jpg",
       "price": 12,
@@ -31,38 +15,6 @@
       "priceSale": 70,
       "categoryId": 1,
       "id": 5
-    },
-    {
-      "name": "Dianne Ullrich V",
-      "img": "https://toplist.vn/images/800px/tony-buoi-sang-tren-duong-bang-173068.jpg",
-      "price": 88,
-      "priceSale": 28,
-      "categoryId": 3,
-      "id": 6
-    },
-    {
-      "name": "Emily Schneider",
-      "img": "https://toplist.vn/images/800px/tony-buoi-sang-tren-duong-bang-173068.jpg",
-      "price": 94,
-      "priceSale": 29,
-      "categoryId": 3,
-      "id": 10
-    },
-    {
-      "name": "Trần Đình Nam",
-      "categoryId": 1,
-      "img": "http://res.cloudinary.com/ecommercer2021/image/upload/v1655185119/yqytgzfuoxbfbjypusui.jpg",
-      "priceSale": "2222",
-      "price": "85000",
-      "id": 11
-    },
-    {
-      "id": 12,
-      "name": "Trần Đình Nam uodate",
-      "price": "85000",
-      "priceSale": "2222",
-      "img": "",
-      "categoryId": "3"
     }
   ],
   "categories": [
@@ -71,16 +23,12 @@
       "id": 1
     },
     {
-      "name": "SACH B",
-      "id": 2
-    },
-    {
-      "name": "SACH C",
-      "id": 3
-    },
-    {
       "id": 4,
       "name": "SACH D"
+    },
+    {
+      "name": "Hoàng",
+      "id": 5
     }
   ]
 }

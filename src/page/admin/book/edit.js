@@ -33,7 +33,7 @@ const BooksEdit = {
                                   <input type="text" value="${data.name}" name="name" id="name" autocomplete="family-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
                                 
-                                <div class="col-span-6 sm:col-span-3">
+                                <div class="col-span-6 sm:col-span-4">
                                   <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                 <div class="space-y-1 text-center">
                                     <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
@@ -54,7 +54,7 @@ const BooksEdit = {
                                 </div>
                   
                                 <div class="col-span-6 sm:col-span-4">
-                                  <label for="name" class="block text-sm font-medium text-gray-700">Tên sản phẩm</label>
+                                  <label for="name" class="block text-sm font-medium text-gray-700">Giá</label>
                                   <input type="number" value="${data.price}" name="price" id="price" autocomplete="family-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
                                 <div class="col-span-6 sm:col-span-4">
@@ -83,8 +83,6 @@ const BooksEdit = {
       
       const submitBtn = document.querySelector('.btn');
       submitBtn.addEventListener('click', () => {
-
-
         edit({
           id: id,
           name : document.querySelector('#name').value,
@@ -110,10 +108,12 @@ const BooksEdit = {
           // console.log(submitData);
          
           // createStudent(submitData);
-          // window.location.replace('/students')
+          // window.location.replace('/students')ô
           // document.location.href = "/students";
         //   router.navigate('/admin/books')
+        window.location.replace('/admin/books')
       });
+     
     }
 
 

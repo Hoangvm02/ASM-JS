@@ -23,7 +23,8 @@ const CategoryPage = {
                 // Thực hiện xoá
                 await remove(btnId);
                 // window.location.reload();
-                await reRender('#content', CategoryPage );
+                // await reRender('#content', CategoryPage );
+                window.location.reload('/admin/category');
             });
 
         });

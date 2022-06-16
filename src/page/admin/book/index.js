@@ -23,7 +23,8 @@ const BooksPage = {
                 const confirm = window.confirm("Bạn có chắc chắn muốn xóa không?")
                 if(confirm){
                     axios.delete(`http://localhost:3000/books/${id}`)
-                    router.navigate('/admin/books')
+                    // router.navigate('/admin/books')
+                    window.location.reload('/admin/books')
                 }
                
                     // document.location.href = "/students"
